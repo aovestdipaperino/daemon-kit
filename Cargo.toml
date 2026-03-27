@@ -1,0 +1,21 @@
+[package]
+name = "daemon-kit"
+version = "0.1.0"
+edition = "2021"
+description = "Cross-platform daemon/service toolkit — daemonize, PID management, and service installation for macOS (launchd), Linux (systemd), and Windows (Windows Service)"
+license = "MIT"
+repository = "https://github.com/aovestdipaperino/daemon-kit"
+keywords = ["daemon", "service", "launchd", "systemd", "windows-service"]
+categories = ["os"]
+
+[dependencies]
+dirs = "6"
+log = "0.4"
+thiserror = "2"
+
+[target.'cfg(unix)'.dependencies]
+daemonize2 = "0.6"
+nix = { version = "0.29", features = ["signal", "process"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-service = "0.7"
