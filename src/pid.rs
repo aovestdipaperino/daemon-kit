@@ -62,21 +62,12 @@ fn is_process_alive(pid: u32) -> bool {
 
 #[cfg(windows)]
 fn is_process_alive(pid: u32) -> bool {
-    use std::os::windows::io::FromRawHandle;
-    unsafe {
-        let handle = winapi_process_handle(pid);
-        if handle.is_null() {
-            return false;
-        }
-        let mut exit_code: u32 = 0;
-        // STILL_ACTIVE = 259
-        let result = windows_sys::Win32::System::Threading::GetExitCodeProcess(
-            handle as _,
-            &mut exit_code as *mut u32,
-        );
-        windows_sys::Win32::Foundation::CloseHandle(handle as _);
-        result != 0 && exit_code == 259
-    }
+    // Use tasklist to check if a process with this PID exists.
+    std::process::Command::new("tasklist")
+        .args(["/FI", &format!("PID eq {pid}"), "/NH"])
+        .output()
+        .map(|o| String::from_utf8_lossy(&o.stdout).contains(&pid.to_string()))
+        .unwrap_or(false)
 }
 
 // Fallback for other platforms

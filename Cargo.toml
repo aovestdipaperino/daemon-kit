@@ -1,6 +1,6 @@
 [package]
 name = "daemon-kit"
-version = "0.1.1"
+version = "0.1.2"
 readme = "README.md"
 edition = "2021"
 description = "Cross-platform daemon/service toolkit — daemonize, PID management, and service installation for macOS (launchd), Linux (systemd), and Windows (Windows Service)"

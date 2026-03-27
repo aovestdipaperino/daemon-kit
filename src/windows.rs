@@ -4,16 +4,11 @@
 //! Manager (SCM). The `start_service` function registers and runs the service,
 //! while `stop_service` sends a stop control event through the SCM.
 
-use std::ffi::OsString;
-use std::sync::mpsc;
 use std::time::Duration;
 
 use windows_service::service::{
-    ServiceAccess, ServiceControl, ServiceControlAccept, ServiceErrorControl, ServiceExitCode,
-    ServiceInfo, ServiceStartType, ServiceState, ServiceStatus, ServiceType,
+    ServiceAccess, ServiceState, ServiceType,
 };
-use windows_service::service_control_handler::{self, ServiceControlHandlerResult};
-use windows_service::service_dispatcher;
 use windows_service::service_manager::{ServiceManager, ServiceManagerAccess};
 
 use crate::config::DaemonConfig;

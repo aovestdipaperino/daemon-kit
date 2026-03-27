@@ -268,8 +268,8 @@ WantedBy=default.target
         launch_args.extend(self.config.service_args.clone());
 
         let service_info = ServiceInfo {
-            name: OsString::from(&self.config.name),
-            display_name: OsString::from(&self.config.description),
+            name: std::ffi::OsString::from(&self.config.name),
+            display_name: std::ffi::OsString::from(&self.config.description),
             service_type: ServiceType::OWN_PROCESS,
             start_type: ServiceStartType::AutoStart,
             error_control: ServiceErrorControl::Normal,
