@@ -1,5 +1,7 @@
 # daemon-kit
 
+[![GitHub stars](https://img.shields.io/github/stars/aovestdipaperino/daemon-kit?logo=github&color=brightgreen)](https://github.com/aovestdipaperino/daemon-kit/stargazers)
+
 Cross-platform daemon/service toolkit for Rust. Provides a unified API for daemonizing processes, managing PID files, and installing system services across macOS, Linux, and Windows.
 
 ## Platform backends
